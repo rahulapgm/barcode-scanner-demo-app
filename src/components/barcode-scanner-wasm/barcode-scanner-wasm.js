@@ -116,7 +116,7 @@ function BarcodeScannerWASM() {
     <div>
       <h2>Barcode Scanner implemented through webassembly</h2>
       <input className={scannerState ? "btn-stop" : "btn-start"} type="button" value={scannerState ? 'Stop Scanning' : 'Start Scanning'} onClick={handleScanner} />
-      <h3>Result: {result}</h3>
+      <h3>Result: <strong style={{color:"blue"}}>{result}</strong></h3>
       {
         scannerState ?  
           <>

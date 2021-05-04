@@ -28,7 +28,7 @@ module.exports = {
                   'style-loader',
                   'css-loader'
                 ]
-              }
+            }
         ],
     },
     plugins: [new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'index.html') })],
