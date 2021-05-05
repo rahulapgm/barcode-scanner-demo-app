@@ -35,9 +35,12 @@ function BarcodeScannerWASM() {
                 // the browser will try to honor this resolution, but it may end up being lower.
                 width: desiredWidth,
                 height: desiredHeight
-              }
+              },
+              advanced: [{
+                  facingMode: "environment"
+              }]
             };
-        
+            
             // open the webcam stream
             navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
                   // stream is a MediaStream object
