@@ -55,3 +55,14 @@
     z-index: -1;
   }
   
+
+  video {
+    width: 42rem;
+    height: 24rem;
+  }
+
+  @media only screen and (max-width:768px){
+    .video {
+      width: 80%;
+    }
+  }

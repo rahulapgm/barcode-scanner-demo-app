@@ -70,7 +70,7 @@ const BarcodeScannerPython = (props) => {
                 scannerState ?  
                 <> 
                     <canvas ref={canvasRef} id="canvas" width="320" height="240" style={{display:"none"}}></canvas>
-                    <video ref={playerRef} id="player" width="460" height="306" preload="true" autoPlay muted></video>
+                    <video ref={playerRef} id="player" preload="true" autoPlay muted></video>
                     <br />
                     <input type="button" className="btn-green" onClick={handleUpload} value="Capture and Decode" />
                     <br />
