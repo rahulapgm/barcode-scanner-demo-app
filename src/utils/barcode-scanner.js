@@ -1498,7 +1498,7 @@ function createExportWrapper(name, fixedasm) {
   };
 }
 
-var wasmBinaryFile = 'public/barcode-scanner.wasm';
+var wasmBinaryFile = 'barcode-scanner-demo-app/public/barcode-scanner.wasm';
 if (!isDataURI(wasmBinaryFile)) {
   wasmBinaryFile = locateFile(wasmBinaryFile);
 }
