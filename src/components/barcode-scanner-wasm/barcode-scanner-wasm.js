@@ -1,5 +1,5 @@
 import React, { useState,useRef, useEffect } from 'react';
-import BarcodeScanner from '../../utils/barcode-scanner';
+import BarcodeScanner from '../../utils/barcode-scanner-opt';
 
 
 const BarcodeScannerPromise = BarcodeScanner({

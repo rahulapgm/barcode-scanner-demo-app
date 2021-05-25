@@ -1,6 +1,6 @@
 /* eslint-disable */
 var $MODULE_NAME = (function() {
-  var _scriptDir = '/barcode-scanner.wasm';
+  var _scriptDir = '/barcode-scanner-opt.wasm';
   
   return (
 function($MODULE_NAME) {
@@ -416,7 +416,7 @@ function isDataURI(filename) {
  return filename.startsWith(dataURIPrefix);
 }
 
-var wasmBinaryFile = 'public/barcode-scanner-opt.wasm';
+var wasmBinaryFile = 'barcode-scanner-demo-app/public/barcode-scanner-opt.wasm';
 
 if (!isDataURI(wasmBinaryFile)) {
  wasmBinaryFile = locateFile(wasmBinaryFile);
