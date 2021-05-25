@@ -1,11 +1,32 @@
 import React, { useState,useRef, useEffect } from 'react';
-import BarcodeScanner from '../../utils/barcode-scanner';
+import BarcodeScanner from '../../utils/barcode-scanner-opt';
 
 
 const BarcodeScannerPromise = BarcodeScanner({
 	noInitialRun: true,
 	noExitRuntime: true
 });
+
+function drawPoly(ctx, poly, data) {
+  // drawPoly expects a flat array of coordinates forming a polygon (e.g. [x1,y1,x2,y2,... etc])
+    ctx.beginPath();
+    ctx.moveTo(poly[0], poly[1]);
+    for (let item = 2; item < poly.length - 1; item += 2) { 
+      ctx.lineTo(poly[item], poly[item + 1]) 
+    }
+  
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = "#FF0000";
+    ctx.closePath();
+    ctx.stroke();
+}
+
+// render the string contained in the barcode as text on the canvas
+function renderData(ctx, data, x, y) {
+	ctx.font = "15px Arial";
+	ctx.fillStyle = "red";
+	ctx.fillText(data, x, y);
+}
 
 function BarcodeScannerWASM() {
   const canvasRef = useRef(null);
@@ -26,8 +47,6 @@ function BarcodeScannerWASM() {
             const video = playerRef.current;
             const canvas = canvasRef.current;
             const ctx = canvas.getContext('2d');
-            const desiredWidth = 1280;
-            const desiredHeight = 720;
         
             // settings for the getUserMedia call
             const constraints = {
@@ -84,8 +103,11 @@ function BarcodeScannerWASM() {
             }
         
             // set the function that should be called whenever a barcode is detected
-            Module['processResult'] = (symbol, data) => {
-                setResult(data)
+            Module['processResult'] = (symbol, data, polygon) => {
+                setResult(data);
+                drawPoly(ctx, polygon, data);
+                // render the data at the first coordinate of the polygon
+	              renderData(ctx, data, polygon[0], polygon[1] - 10)
             }
         });
       }  
@@ -118,8 +140,8 @@ function BarcodeScannerWASM() {
       {
         scannerState ?  
           <>
-            <canvas ref={canvasRef} id="canvas" width="320" height="240" style={{display:"none"}}></canvas>
-            <video ref={playerRef} id="player" preload="true" autoPlay muted></video>
+            <canvas ref={canvasRef} id="canvas" width="320" height="240"></canvas>
+            <video ref={playerRef} id="player" preload="true" autoPlay muted style={{display:"none"}}></video>
             <br />
           </> : null
       }
