@@ -141,7 +141,7 @@ function BarcodeScannerWASM() {
         scannerState ?  
           <>
             <canvas ref={canvasRef} id="canvas" width="320" height="240"></canvas>
-            <video ref={playerRef} id="player" preload="true" autoPlay muted playsInline style={{visibility:"hidden"}}></video>
+            <video ref={playerRef} id="player" preload="true" autoPlay muted playsInline width="0" height="0" style={{width:0, height:0}}></video>
             <br />
           </> : null
       }
