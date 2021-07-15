@@ -56,7 +56,7 @@ function BarcodeScannerWASM() {
             };
 
             // open the webcam stream
-            navigator.mediaDevices.getUserMedia({video: constraints}).then((stream) => {
+            navigator.mediaDevices.getUserMedia({video: true}).then((stream) => {
                   // stream is a MediaStream object
                   video.srcObject = stream;
                   video.play();
