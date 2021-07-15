@@ -125,7 +125,7 @@ function BarcodeScannerWASM() {
                 facingMode: "environment"
             }]
         };
-        navigator.mediaDevices.getUserMedia({video: constraints}).then((stream) => {
+        navigator.mediaDevices.getUserMedia({video: true}).then((stream) => {
             playerRef.current.srcObject = stream;
         });
     }
